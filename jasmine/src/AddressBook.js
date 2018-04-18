@@ -1,5 +1,6 @@
 function AddressBook() {
     var contactList = [];
+    var initializedData = false;
     return {
         addContact: function (newContact) {
             if(this.contactList && this.contactList.length) {
@@ -13,7 +14,15 @@ function AddressBook() {
         },
         deleteContact: function(index) {
             this.contactList.splice(index,1);
-        }
+        },
+        getInitialData: function(cb) {
+            var self = this;
+            setTimeout(function() {
+                self.dataInitialized = true;
+                cb();
+            }, 3);
+        },
+        dataInitialized: false
     }
 }
 
